@@ -1,3 +1,5 @@
+import 'package:techblog_app/component/api_const.dart';
+
 class ArticleModel {
   String? id;
   String? title;
@@ -21,14 +23,14 @@ class ArticleModel {
     required this.createdAt,
   });
   ArticleModel.fromJson(Map<String, dynamic> element) {
-     id = element["id"];
-     title = element["title"];
-     image = element["image"];
-     catId = element["cat_id"];
-     catName = element["cat_name"];
-     author = element["author"];
-     view = element["view"];
-     status = element["status"];
-     createdAt = element["created_at"];
+    id = element["id"];
+    title = element["title"];
+    image = ApiConst.hostDlUrl + element["image"];
+    catId = element["cat_id"];
+    catName = element["cat_name"];
+    author = element["author"];
+    view = element["view"];
+    status = element["status"];
+    createdAt = element["created_at"];
   }
 }
