@@ -10,7 +10,7 @@ class DioService {
         .get(url,
             options: Options(responseType: ResponseType.json, method: 'GET'))
         .then((response) {
-      LogInterceptor(logPrint: (object) => response.toString(),);
+      print(response.toString());
       return response;
     });
   }
