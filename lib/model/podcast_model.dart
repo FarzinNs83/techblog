@@ -1,4 +1,6 @@
-class PodcastModel {
+import 'package:techblog_app/component/api_const.dart';
+
+class PodCastsModel {
   String? id;
   String? title;
   String? poster;
@@ -8,7 +10,7 @@ class PodcastModel {
   String? status;
   String? createdAt;
 
-  PodcastModel({
+  PodCastsModel({
     required this.id,
     required this.title,
     required this.poster,
@@ -18,9 +20,9 @@ class PodcastModel {
     required this.status,
     required this.createdAt,
   });
-  PodcastModel.fromJson(Map<String, dynamic> element) {
+  PodCastsModel.fromJson(Map<String, dynamic> element) {
     id = element["id"];
-    id = element["title"];
+    id = ApiConst.hostDlUrl + element["title"];
     id = element["poster"];
     id = element["cat_name"];
     id = element["author"];

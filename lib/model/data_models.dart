@@ -24,13 +24,3 @@ class BlogModel {
       required this.views});
 }
 
-class PodCastModel {
-  int id;
-  String title;
-  String imageUrl;
-
-  PodCastModel(
-    {required this.id, 
-    required this.title, 
-    required this.imageUrl});
-}

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techblog_app/component/my_colors.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
 import 'package:techblog_app/model/fake_data.dart';
@@ -66,5 +67,20 @@ mylaunchUrl(String url) async{
     await launchUrl(uri);
   } else {
     print("Could not launch");
+  }
+}
+
+
+class MyLoading extends StatelessWidget {
+  const MyLoading({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SpinKitFadingCube(
+      color: SolidColors.primaryColor,
+      size: 32,
+    );
   }
 }
