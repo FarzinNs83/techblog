@@ -80,6 +80,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/home.png
   AssetGenImage get home => const AssetGenImage('assets/images/home.png');
 
+  /// File path: assets/images/imagenotfound.jpg
+  AssetGenImage get imagenotfound =>
+      const AssetGenImage('assets/images/imagenotfound.jpg');
+
   /// File path: assets/images/pen.png
   AssetGenImage get pen => const AssetGenImage('assets/images/pen.png');
 
@@ -117,6 +121,7 @@ class $AssetsImagesGen {
         flash,
         hashtag,
         home,
+        imagenotfound,
         pen,
         podcast,
         poster,

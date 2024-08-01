@@ -11,7 +11,7 @@ class HomeScreenController extends GetxController {
 
   RxList tagsList = RxList();
   RxList<ArticleModel> topVisitedList = RxList();
-  RxList<PodCastsModel> topPodcastList = RxList();
+  RxList<PodcastModel> topPodcastList = RxList();
   RxBool loading = false.obs;
 
   @override
@@ -31,7 +31,7 @@ class HomeScreenController extends GetxController {
       });
 
       response.data['top_podcasts'].forEach((element) {
-        topPodcastList.add(PodCastsModel.fromJson(element));
+        topPodcastList.add(PodcastModel.fromJson(element));
       });
       poster.value = PosterModel.fromJson(response.data['poster']);
 

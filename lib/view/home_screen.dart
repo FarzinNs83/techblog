@@ -140,10 +140,9 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-//TODO Fix podcast list null images
   Widget topPodCast() {
     return SizedBox(
-      height: size.height / 3.5,
+      height: size.height / 2.7,
       child: Obx(
         () => 
         ListView.builder(

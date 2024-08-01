@@ -1,33 +1,32 @@
+import 'package:flutter/material.dart';
 import 'package:techblog_app/component/api_const.dart';
 
-class PodCastsModel {
+class PodcastModel {
   String? id;
   String? title;
   String? poster;
-  String? catName;
-  String? author;
+  String? publisher;
   String? view;
-  String? status;
   String? createdAt;
-
-  PodCastsModel({
+  PodcastModel({
     required this.id,
     required this.title,
     required this.poster,
-    required this.catName,
-    required this.author,
+    required this.publisher,
     required this.view,
-    required this.status,
     required this.createdAt,
   });
-  PodCastsModel.fromJson(Map<String, dynamic> element) {
-    id = element["id"];
-    id = ApiConst.hostDlUrl + element["title"];
-    id = element["poster"];
-    id = element["cat_name"];
-    id = element["author"];
-    id = element["view"];
-    id = element["status"];
-    id = element["created_at"];
+
+
+  factory PodcastModel.fromJson(Map<String, dynamic> json) {
+    return PodcastModel(
+      id: json['id'] ?? '',
+      title: json['title'] ?? '',
+      poster: ApiConst.hostDlUrl + (json['poster'] ?? ''),
+      publisher: json['publisher'] ?? '',
+      view: json['view'] ?? '',
+      createdAt: json['created_at'] ?? '',
+    );
+
   }
 }
