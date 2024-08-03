@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:techblog_app/component/my_colors.dart';
 import 'package:techblog_app/component/my_component.dart';
 import 'package:techblog_app/component/my_string.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
-import 'package:techblog_app/model/data_models.dart';
 import 'package:techblog_app/model/fake_data.dart';
 
 class MyCategories extends StatefulWidget {

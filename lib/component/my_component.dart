@@ -1,10 +1,11 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:techblog_app/component/my_colors.dart';
+import 'package:techblog_app/component/text_style.dart';
+import 'package:techblog_app/controller/home_screen_controller.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
-import 'package:techblog_app/model/fake_data.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TechDivider extends StatelessWidget {
@@ -26,14 +27,16 @@ class TechDivider extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class HashtagList extends StatelessWidget {
+  
    HashtagList({
     super.key,
     required this.textTheme,
     required this.index
   });
-
   final TextTheme textTheme;
+  // ignore: prefer_typing_uninitialized_variables
   var index;
 
   @override
@@ -54,7 +57,7 @@ class HashtagList extends StatelessWidget {
               ImageIcon(Assets.images.hashtag.provider(),
                   color: Colors.white, size: 14),
               const SizedBox(width: 8),
-              Text(tagList[index].title, style: textTheme.titleMedium)
+              Text(Get.find <HomeScreenController>().tagsList[index].title!, style: textTheme.titleMedium)
             ],
           ),
         ));
@@ -84,3 +87,35 @@ class MyLoading extends StatelessWidget {
     );
   }
 }
+
+
+ PreferredSize appBar(String title) {
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(60),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: AppBar(
+          backgroundColor: Colors.transparent,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Center(child: Text("مقالات جدید",style: appBarTextStyle,)),
+            ),
+          ],
+          
+          leading: Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                  color: SolidColors.primaryColor.withAlpha(100),
+                  shape: BoxShape.circle),
+                  child: const Icon(Icons.keyboard_arrow_right_rounded),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  

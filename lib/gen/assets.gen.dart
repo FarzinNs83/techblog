@@ -99,6 +99,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/ramzon.png
   AssetGenImage get ramzon => const AssetGenImage('assets/images/ramzon.png');
 
+  /// File path: assets/images/single_place_holder.jpg
+  AssetGenImage get singlePlaceHolder =>
+      const AssetGenImage('assets/images/single_place_holder.jpg');
+
   /// File path: assets/images/splashscreen.png
   AssetGenImage get splashscreen =>
       const AssetGenImage('assets/images/splashscreen.png');
@@ -127,6 +131,7 @@ class $AssetsImagesGen {
         poster,
         radio,
         ramzon,
+        singlePlaceHolder,
         splashscreen,
         tecno,
         user,

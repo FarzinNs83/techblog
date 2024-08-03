@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:techblog_app/component/api_const.dart';
 import 'package:techblog_app/component/my_colors.dart';
 import 'package:techblog_app/component/my_component.dart';
 import 'package:techblog_app/component/my_string.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
-import 'package:techblog_app/services/dio_service.dart';
-import 'package:techblog_app/view/home_screen.dart';
-import 'package:techblog_app/view/profile_screen.dart';
+import 'package:techblog_app/view/main_screen/home_screen.dart';
+import 'package:techblog_app/view/main_screen/profile_screen.dart';
 
+// ignore: must_be_immutable
 class MainScreen extends StatelessWidget {
   RxInt selectedPageIndex = 0.obs;
   final GlobalKey<ScaffoldState> _key = GlobalKey();

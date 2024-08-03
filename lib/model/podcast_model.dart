@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:techblog_app/component/api_const.dart';
 
 class PodcastModel {

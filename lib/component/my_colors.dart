@@ -22,6 +22,7 @@ class SolidColors {
   static const Color surfaceColor = Color.fromARGB(255, 242, 242, 242);
   static const Color surfaceColorBorder = Color.fromARGB(255, 112, 112, 112);
   static const Color hintText = Color.fromARGB(219, 219, 219, 219);
+  static const Color caption = Color.fromARGB(255, 97, 97, 97);
 }
 
 class GradientColors {
@@ -45,5 +46,10 @@ class GradientColors {
     const Color.fromARGB(0, 40, 41, 46),
     const Color.fromARGB(130, 63, 26, 77),
     const Color.fromARGB(255, 28, 20, 81),
+  ];
+  static const List<Color> singleAppBarGradient = [
+    const Color.fromARGB(255, 46, 3, 71),
+    const Color.fromARGB(132, 85, 63, 98),
+    const Color.fromARGB(0, 128, 128, 128),
   ];
 }

@@ -1,15 +1,15 @@
 import 'package:get/get.dart';
 import 'package:techblog_app/component/api_const.dart';
 import 'package:techblog_app/model/article_model.dart';
-import 'package:techblog_app/model/data_models.dart';
 import 'package:techblog_app/model/podcast_model.dart';
 import 'package:techblog_app/model/poster_model.dart';
+import 'package:techblog_app/model/tags_model.dart';
 import 'package:techblog_app/services/dio_service.dart';
 
 class HomeScreenController extends GetxController {
   Rx<PosterModel> poster = PosterModel().obs;
 
-  RxList tagsList = RxList();
+  RxList<TagsModel> tagsList = RxList();
   RxList<ArticleModel> topVisitedList = RxList();
   RxList<PodcastModel> topPodcastList = RxList();
   RxBool loading = false.obs;
@@ -19,7 +19,6 @@ class HomeScreenController extends GetxController {
     super.onInit();
     getHomeItems();
   }
-
 
   getHomeItems() async {
     loading.value = true;
@@ -32,6 +31,9 @@ class HomeScreenController extends GetxController {
 
       response.data['top_podcasts'].forEach((element) {
         topPodcastList.add(PodcastModel.fromJson(element));
+      });
+      response.data['tags'].forEach((element) {
+        tagsList.add(TagsModel.fromJson(element));
       });
       poster.value = PosterModel.fromJson(response.data['poster']);
 

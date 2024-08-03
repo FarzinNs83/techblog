@@ -7,8 +7,8 @@ import 'package:techblog_app/component/my_component.dart';
 import 'package:techblog_app/component/my_string.dart';
 import 'package:techblog_app/controller/home_screen_controller.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
-import 'package:techblog_app/model/fake_data.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   HomeScreen({
     super.key,
@@ -31,22 +31,21 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
             child: homeScreenController.loading.value == false
                 ? Column(children: [
-                    // HomePagePoster
+                    
                     poster(),
                     const SizedBox(height: 16),
-                    //Tag List
-                    HomePageTagList(
-                        bodyMargin: bodyMargin, textTheme: textTheme),
+                    
+                    tags(),
                     const SizedBox(height: 24),
-                    // SeeMore
+                    
                     SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme),
                     const SizedBox(height: 8),
                     topVisited(),
-                    // Fav PodCast
+                    
                     SeeMorePodCast(
                         bodyMargin: bodyMargin, textTheme: textTheme),
                     const SizedBox(height: 8),
-                    // Fav PodCast List
+                    
                     topPodCast(),
                   ])
                 : const MyLoading(),
@@ -189,7 +188,21 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-
+  Widget tags () {
+    return SizedBox(
+      height: 60,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: homeScreenController.tagsList.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.fromLTRB(0, 8, index == 0 ? bodyMargin : 15, 8),
+            child: HashtagList(textTheme: textTheme, index: index),
+          );
+        },
+      ),
+    );
+  }
   Widget poster() {
     return Stack(
       children: [
@@ -240,33 +253,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class HomePageTagList extends StatelessWidget {
-  const HomePageTagList({
-    super.key,
-    required this.bodyMargin,
-    required this.textTheme,
-  });
 
-  final double bodyMargin;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 60,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: tagList.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.fromLTRB(0, 8, index == 0 ? bodyMargin : 15, 8),
-            child: HashtagList(textTheme: textTheme, index: index),
-          );
-        },
-      ),
-    );
-  }
-}
 
 class SeeMoreBlog extends StatelessWidget {
   const SeeMoreBlog({

@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:techblog_app/component/my_colors.dart';
-import 'package:techblog_app/view/home_screen.dart';
-import 'package:techblog_app/view/main_screen.dart';
-import 'package:techblog_app/view/my_categories.dart';
-import 'package:techblog_app/view/register_intro.dart';
+import 'package:techblog_app/view/main_screen/article_list_screen.dart';
+import 'package:techblog_app/view/single.dart';
 import 'package:techblog_app/view/splash_screen.dart';
 
 void main() {
@@ -111,7 +109,7 @@ class MyApp extends StatelessWidget {
         Locale('fa'), // Persian
       ],
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home:  Single(),
     );
   }
 }

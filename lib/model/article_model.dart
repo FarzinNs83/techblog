@@ -10,6 +10,7 @@ class ArticleModel {
   String? view;
   String? status;
   String? createdAt;
+  // String? isFavorite;
 
   ArticleModel({
     required this.id,
@@ -21,6 +22,7 @@ class ArticleModel {
     required this.view,
     required this.status,
     required this.createdAt,
+    // this.isFavorite,
   });
   ArticleModel.fromJson(Map<String, dynamic> element) {
     id = element["id"];
@@ -32,5 +34,6 @@ class ArticleModel {
     view = element["view"];
     status = element["status"];
     createdAt = element["created_at"];
+    // createdAt = element["isFavorite"];
   }
 }
