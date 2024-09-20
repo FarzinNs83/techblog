@@ -5,9 +5,9 @@ import 'package:techblog_app/component/my_colors.dart';
 
 TextStyle appBarTextStyle = const TextStyle(
     fontFamily: 'dana',
-    fontSize: 16,
+    fontSize: 18,
     color: SolidColors.primaryColor,
-    fontWeight: FontWeight.w300);
+    fontWeight: FontWeight.bold);
 
     TextStyle caption = const TextStyle(
       fontFamily: 'dana',

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
 import 'package:techblog_app/component/my_colors.dart';
-import 'package:techblog_app/view/main_screen/article_list_screen.dart';
-import 'package:techblog_app/view/single.dart';
+import 'package:techblog_app/view/article_list_screen.dart';
+import 'package:techblog_app/view/register_intro.dart';
+import 'package:techblog_app/view/single_article.dart';
 import 'package:techblog_app/view/splash_screen.dart';
 
 void main() {
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
 
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(
           inputDecorationTheme: InputDecorationTheme(
               border: OutlineInputBorder(
@@ -100,16 +102,9 @@ class MyApp extends StatelessWidget {
                 color: SolidColors.primaryColor,
                 fontWeight: FontWeight.w700),
           )),
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('fa'), // Persian
-      ],
+      locale: const Locale('fa'),
       debugShowCheckedModeBanner: false,
-      home:  Single(),
+      home: SplashScreen()
     );
   }
 }

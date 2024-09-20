@@ -16,8 +16,6 @@ class MainScreen extends StatelessWidget {
   MainScreen({super.key});
   @override
   Widget build(BuildContext context) {
-
-
     var textTheme = Theme.of(context).textTheme;
     var size = MediaQuery.of(context).size;
     var bodyMargin = size.width / 10;
@@ -64,12 +62,19 @@ class MainScreen extends StatelessWidget {
                 ListTile(
                   title: Text("تک‌بلاگ در گیت هاب", style: textTheme.bodySmall),
                   onTap: () {
-                  mylaunchUrl(MyString.techBlogGithubUrl);
+                    mylaunchUrl(MyString.techBlogGithubUrl);
                   },
                 ),
                 const Divider(
                   color: SolidColors.divider,
                 ),
+                IconButton(
+                    onPressed: () {
+                      Get.isDarkMode ? ThemeData.light() : ThemeData.dark();
+                    },
+                    icon: Icon(Get.isDarkMode
+                        ? Icons.light_mode_outlined
+                        : Icons.dark_mode_outlined))
               ],
             ),
           ),

@@ -23,6 +23,7 @@ class SolidColors {
   static const Color surfaceColorBorder = Color.fromARGB(255, 112, 112, 112);
   static const Color hintText = Color.fromARGB(219, 219, 219, 219);
   static const Color caption = Color.fromARGB(255, 97, 97, 97);
+  static const Color articleTags = Color.fromARGB(255, 242, 242, 242);
 }
 
 class GradientColors {
