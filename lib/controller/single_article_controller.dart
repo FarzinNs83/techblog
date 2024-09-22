@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:techblog_app/component/api_const.dart';
 import 'package:techblog_app/model/article_info_model.dart';

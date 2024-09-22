@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 import 'package:techblog_app/component/api_const.dart';
-import 'package:techblog_app/model/article_info_model.dart';
 import 'package:techblog_app/model/article_model.dart';
-import 'package:techblog_app/model/fake_data.dart';
 import 'package:techblog_app/services/dio_service.dart';
 
 class ArticleScreenController extends GetxController {

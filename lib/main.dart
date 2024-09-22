@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:techblog_app/component/my_colors.dart';
-import 'package:techblog_app/view/article_list_screen.dart';
-import 'package:techblog_app/view/register_intro.dart';
-import 'package:techblog_app/view/single_article.dart';
+import 'package:techblog_app/view/bindings.dart';
 import 'package:techblog_app/view/splash_screen.dart';
 
-void main() {
+void main() async{
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: SolidColors.statusBarColor,
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarColor: SolidColors.systemNavigationBarColor,
       systemNavigationBarIconBrightness: Brightness.dark));
+      await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -25,6 +24,7 @@ class MyApp extends StatelessWidget {
     var textTheme = Theme.of(context).textTheme;
 
     return GetMaterialApp(
+      initialBinding: RegisterBinding(),
       theme: ThemeData(
           inputDecorationTheme: InputDecorationTheme(
               border: OutlineInputBorder(
@@ -104,7 +104,7 @@ class MyApp extends StatelessWidget {
           )),
       locale: const Locale('fa'),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen()
+      home: const SplashScreen()
     );
   }
 }

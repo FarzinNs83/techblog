@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:techblog_app/component/my_string.dart';
+import 'package:techblog_app/controller/register_intro_controller.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
-import 'package:techblog_app/view/my_categories.dart';
 import 'package:validators/validators.dart';
 
 class RegisterIntro extends StatelessWidget {
-  const RegisterIntro({super.key});
+  RegisterIntro({super.key});
+  var registerIntroController = Get.find<RegisterIntroController>();
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +42,7 @@ class RegisterIntro extends StatelessWidget {
       ),
     );
   }
-}
-
-Future<dynamic> _showEmailBottomSheet(
+  Future<dynamic> _showEmailBottomSheet(
     BuildContext context, Size size, TextTheme textTheme) {
   return showModalBottomSheet(
     isScrollControlled: true,
@@ -68,7 +68,8 @@ Future<dynamic> _showEmailBottomSheet(
                 ),
                 Padding(
                   padding: const EdgeInsets.all(24),
-                  child: TextField(
+                  child: TextFormField(
+                    controller: registerIntroController.emailTextEditingController,
                     onChanged: (value) {
                       isEmail(value);
                       print("$value is Email : ${isEmail(value)}");
@@ -81,6 +82,7 @@ Future<dynamic> _showEmailBottomSheet(
                 ),
                 ElevatedButton(
                     onPressed: () {
+                      registerIntroController.register();
                       Navigator.pop(context);
                       _activateCodeBottomSheet(context, size, textTheme);
                     },
@@ -120,7 +122,8 @@ Future<dynamic> _activateCodeBottomSheet(
                 ),
                 Padding(
                   padding: const EdgeInsets.all(24),
-                  child: TextField(
+                  child: TextFormField(
+                    controller: registerIntroController.activationCodeTextEditingController,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         hintText: "******", hintStyle: textTheme.labelSmall),
@@ -128,9 +131,8 @@ Future<dynamic> _activateCodeBottomSheet(
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const MyCategories(),
-                      ));
+                      registerIntroController.verify();
+                      
                     },
                     child: const Text("ادامه"))
               ],
@@ -141,3 +143,6 @@ Future<dynamic> _activateCodeBottomSheet(
     },
   );
 }
+
+}
+

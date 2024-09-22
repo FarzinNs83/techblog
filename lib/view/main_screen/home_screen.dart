@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(height: 8),
                     topPodCast(),
                   ])
-                : const MyLoading(),
+                : const SizedBox(child: MyLoading()),
           )),
     );
   }
