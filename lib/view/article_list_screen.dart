@@ -11,10 +11,8 @@ class ArticleListScreen extends StatelessWidget {
   ArticleListScreen({
     super.key,
   });
-  ArticleScreenController articleScreenController =
-      Get.put(ArticleScreenController());
-  SingleArticleController singleArticleController =
-      Get.put(SingleArticleController());
+  var articleScreenController = Get.find<ArticleScreenController>();
+  var singleArticleController = Get.find<SingleArticleController>();
 
   @override
   Widget build(BuildContext context) {

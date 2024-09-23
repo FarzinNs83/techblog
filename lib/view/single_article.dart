@@ -11,8 +11,8 @@ import 'package:techblog_app/view/article_list_screen.dart';
 // ignore: must_be_immutable
 class SingleArticle extends StatelessWidget {
   SingleArticle({super.key});
-  SingleArticleController singleArticleController =
-      Get.put(SingleArticleController());
+  var singleArticleController =
+      Get.find<SingleArticleController>();
   ArticleScreenController articleScreenController =
       Get.put(ArticleScreenController());
 
@@ -28,20 +28,22 @@ class SingleArticle extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    CachedNetworkImage(
-                      imageBuilder: (context, imageProvider) {
-                        return Image(image: imageProvider);
-                      },
-                      imageUrl: singleArticleController
-                              .singleArticleList.value.image ??
-                          '',
-                      placeholder: (context, url) {
-                        return const MyLoading();
-                      },
-                      errorWidget: (context, url, error) {
-                        return Image.asset(
-                            Assets.images.singlePlaceHolder.path);
-                      },
+                    SizedBox(
+                      child: CachedNetworkImage(
+                        imageBuilder: (context, imageProvider) {
+                          return Image(image: imageProvider);
+                        },
+                        imageUrl: singleArticleController
+                                .singleArticleList.value.image ??
+                            '',
+                        placeholder: (context, url) {
+                          return const MyLoading();
+                        },
+                        errorWidget: (context, url, error) {
+                          return Image.asset(
+                              Assets.images.singlePlaceHolder.path);
+                        },
+                      ),
                     ),
                     Positioned(
                       right: 0,
@@ -134,7 +136,7 @@ class SingleArticle extends StatelessWidget {
                             width: 12,
                           ),
                           Text(
-                            "2 روز پیش",
+                            singleArticleController.singleArticleList.value.createdAt!,
                             style: TextStyle(
                               color: Colors.grey.shade500,
                               fontFamily: 'dana',
@@ -153,8 +155,15 @@ class SingleArticle extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 22),
                   child: Column(
                     children: [
-                      Text(singleArticleController
-                          .singleArticleList.value.content!),
+                      Text(
+                        singleArticleController
+                            .singleArticleList.value.content!,
+                        style: const TextStyle(
+                          fontFamily: 'dana',
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                      ),
                       const SizedBox(
                         height: 24,
                       ),

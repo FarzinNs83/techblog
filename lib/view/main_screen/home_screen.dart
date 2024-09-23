@@ -259,9 +259,12 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 6),
-              Text(
-                homeScreenController.poster.value.title!,
-                style: textTheme.displayLarge,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  homeScreenController.poster.value.title!,
+                  style: textTheme.displayLarge,
+                ),
               )
             ],
           ),
