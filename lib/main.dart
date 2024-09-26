@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:techblog_app/component/my_colors.dart';
+import 'package:techblog_app/component/constant/my_colors.dart';
 import 'package:techblog_app/view/bindings.dart';
 import 'package:techblog_app/view/main_screen/main_screen.dart';
+import 'package:techblog_app/view/manage_article.dart';
 import 'package:techblog_app/view/single_article.dart';
+import 'package:techblog_app/view/single_manage_article.dart';
 import 'package:techblog_app/view/splash_screen.dart';
 
 void main() async {
@@ -28,13 +30,20 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
         getPages: [
           GetPage(
-              name: routeMainScreen,
+              name: RouteManager.routeMainScreen,
               page: () => MainScreen(),
               binding: RegisterBinding()),
           GetPage(
-              name: routeMainScreen,
+              name: RouteManager.routeMainScreen,
               page: () => SingleArticle(),
               binding: ArticleBinding()),
+          GetPage(
+              name: RouteManager.routeManagerArticle,
+              page: () => ManageArticle(),
+              binding: ManageArticleBinding()),GetPage(
+              name: RouteManager.routeSingleManageArticle,
+              page: () => SingleManageArticle(),
+              binding: ManageArticleBinding()),
         ],
         theme: lightMode(textTheme),
         locale: const Locale('fa'),
@@ -123,5 +132,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
-String routeMainScreen = '/MainScreen';
-String routeSingleArticle = '/SingleArticle';
+class RouteManager {
+  static String routeMainScreen = '/MainScreen';
+  static String routeSingleArticle = '/SingleArticle';
+  static String routeManagerArticle = '/ManagerArticle';
+  static String routeSingleManageArticle = '/SingleManageArticle';
+}

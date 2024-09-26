@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:techblog_app/component/my_colors.dart';
+import 'package:techblog_app/component/constant/my_colors.dart';
+import 'package:techblog_app/component/dimension.dart';
 import 'package:techblog_app/component/my_component.dart';
-import 'package:techblog_app/component/my_string.dart';
+import 'package:techblog_app/component/constant/my_string.dart';
 import 'package:techblog_app/controller/register_intro_controller.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
 import 'package:techblog_app/view/main_screen/home_screen.dart';
@@ -18,8 +19,6 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
-    var size = MediaQuery.of(context).size;
-    var bodyMargin = size.width / 10;
 
     return SafeArea(
       child: Scaffold(
@@ -27,7 +26,8 @@ class MainScreen extends StatelessWidget {
         drawer: Drawer(
           backgroundColor: SolidColors.scaffoldBackground,
           child: Padding(
-            padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
+            padding: EdgeInsets.only(
+                right: Dimension.bodyMargin, left: Dimension.bodyMargin),
             child: ListView(
               children: [
                 DrawerHeader(
@@ -95,7 +95,7 @@ class MainScreen extends StatelessWidget {
                   child: const Icon(Icons.menu, color: Colors.black)),
               Image(
                   image: Assets.images.splashscreen.provider(),
-                  height: size.height / 13.6),
+                  height: Get.height / 13.6),
               const Icon(Icons.search, color: Colors.black)
             ],
           ),
@@ -110,20 +110,15 @@ class MainScreen extends StatelessWidget {
                   index: selectedPageIndex.value,
                   children: [
                     HomeScreen(
-                        size: size,
-                        textTheme: textTheme,
-                        bodyMargin: bodyMargin),
+                        textTheme: textTheme, bodyMargin: Dimension.bodyMargin),
                     ProfileScreen(
-                        size: size,
-                        textTheme: textTheme,
-                        bodyMargin: bodyMargin)
+                        textTheme: textTheme, bodyMargin: Dimension.bodyMargin)
                   ],
                 ),
               )),
               //BottomNavigation
               BottomNav(
-                size: size,
-                bodyMargin: bodyMargin,
+                bodyMargin: Dimension.bodyMargin,
                 changeScreen: (int value) {
                   selectedPageIndex.value = value;
                 },
@@ -139,12 +134,10 @@ class MainScreen extends StatelessWidget {
 class BottomNav extends StatelessWidget {
   const BottomNav({
     super.key,
-    required this.size,
     required this.bodyMargin,
     required this.changeScreen,
   });
 
-  final Size size;
   final double bodyMargin;
   final Function(int) changeScreen;
 
@@ -155,7 +148,7 @@ class BottomNav extends StatelessWidget {
       right: 0,
       left: 0,
       child: Container(
-        height: size.height / 10,
+        height: Get.height / 10,
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: GradientColors.bottomnavBackground,
@@ -165,7 +158,7 @@ class BottomNav extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
           child: Container(
-            height: size.height / 8,
+            height: Get.height / 8,
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(18)),
                 gradient: LinearGradient(colors: GradientColors.bottomnav)),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:techblog_app/component/my_colors.dart';
+import 'package:techblog_app/component/constant/my_colors.dart';
 import 'package:techblog_app/component/my_component.dart';
-import 'package:techblog_app/component/my_string.dart';
+import 'package:techblog_app/component/constant/my_string.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
 import 'package:techblog_app/model/fake_data.dart';
 

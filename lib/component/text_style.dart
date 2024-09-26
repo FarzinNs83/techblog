@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/widgets.dart';
-import 'package:techblog_app/component/my_colors.dart';
+import 'package:techblog_app/component/constant/my_colors.dart';
 
 TextStyle appBarTextStyle = const TextStyle(
     fontFamily: 'dana',

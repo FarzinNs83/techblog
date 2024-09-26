@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:techblog_app/component/my_colors.dart';
+import 'package:techblog_app/component/constant/my_colors.dart';
+import 'package:techblog_app/component/constant/my_string.dart';
+import 'package:techblog_app/component/dimension.dart';
 import 'package:techblog_app/component/text_style.dart';
 import 'package:techblog_app/controller/home_screen_controller.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
+import 'package:techblog_app/main.dart';
+import 'package:techblog_app/view/article_list_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TechDivider extends StatelessWidget {
   const TechDivider({
     super.key,
-    required this.size,
   });
-
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
     return Divider(
       color: SolidColors.divider,
       thickness: 1,
-      indent: size.width / 6,
-      endIndent: size.width / 6,
+      indent: Get.width / 6,
+      endIndent: Get.width / 6,
     );
   }
 }
@@ -75,9 +76,11 @@ class MyLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SpinKitFadingCube(
-      color: SolidColors.primaryColor,
-      size: 32,
+    return const Center(
+      child: SpinKitFadingCube(
+        color: SolidColors.primaryColor,
+        size: 32,
+      ),
     );
   }
 }
@@ -94,20 +97,28 @@ PreferredSize appBar(String title) {
             padding: const EdgeInsets.only(left: 16),
             child: Center(
                 child: Text(
-              "مقالات جدید",
+              title,
               style: appBarTextStyle,
             )),
           ),
         ],
         leading: Padding(
-          padding: const EdgeInsets.only(right: 16),
-          child: Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-                color: SolidColors.primaryColor.withAlpha(100),
-                shape: BoxShape.circle),
-            child: const Icon(Icons.keyboard_arrow_right_rounded),
+          padding: const EdgeInsets.only(right: 12),
+          child: GestureDetector(
+            onTap: () => Get.back(),
+            child: Container(
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.purple[200],
+              ),
+              child: const Icon(
+                Icons.arrow_back,
+                size: 32,
+                color: Colors.white,
+              ),
+            ),
           ),
         ),
       ),
@@ -157,7 +168,7 @@ routeToWriteBottomSheet() {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
-                onTap: () => debugPrint("Write Article"),
+                onTap: () => Get.toNamed(RouteManager.routeManagerArticle),
                 child: SizedBox(
                   height: 50,
                   child: Row(
@@ -188,7 +199,7 @@ routeToWriteBottomSheet() {
                     children: [
                       Image(
                         image: Assets.images.writePodcast.provider(),
-                        height: 35,
+                        height: 45,
                       ),
                       const SizedBox(
                         width: 16,
@@ -210,4 +221,23 @@ routeToWriteBottomSheet() {
       ),
     ),
   ));
+}
+
+Widget seeMore(String text) {
+  return Padding(
+    padding: EdgeInsets.only(right: Dimension.halfBodyMargin, bottom: 8),
+    child: GestureDetector(
+      onTap: () => Get.to(ArticleListScreen()),
+      child: Row(
+        children: [
+          ImageIcon(
+            Assets.images.pen.provider(),
+            color: SolidColors.seeMore,
+          ),
+          const SizedBox(width: 8),
+          Text(text),
+        ],
+      ),
+    ),
+  );
 }

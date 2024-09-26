@@ -18,6 +18,8 @@ class MyString {
 برای ارسال مطلب و پادکست باید حتما 
 ثبت نام کنی 
   """;
+  static const String managerArticle = """ هنوز هیچ مقاله ای به جامعه گیک های فارسی 
+اضافه نکردی !!! """;
   static const String shareText =
       """ من از تک بلاگ استفاده میکنم خیلی باحاله, تو هم داشته باش\n
    www.sasansafari.com

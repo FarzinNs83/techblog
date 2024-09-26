@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:techblog_app/component/my_colors.dart';
+import 'package:techblog_app/component/constant/my_colors.dart';
 import 'package:techblog_app/component/my_component.dart';
-import 'package:techblog_app/component/my_string.dart';
+import 'package:techblog_app/component/constant/my_string.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
     super.key,
-    required this.size,
     required this.textTheme,
     required this.bodyMargin,
   });
 
-  final Size size;
   final TextTheme textTheme;
   final double bodyMargin;
 
@@ -40,27 +38,27 @@ class ProfileScreen extends StatelessWidget {
               Text("فاطمه امیری", style: textTheme.bodySmall),
               Text("fatemeamiri@gmail.com", style: textTheme.bodySmall),
               const SizedBox(height: 40),
-              TechDivider(size: size),
+              TechDivider(),
               InkWell(
                 onTap: () {},
                 splashColor: SolidColors.primaryColor,
                 child: SizedBox(
                     height: 40,
                     child: Center(
-                        child:
-                            Text(MyString.favBlog, style: textTheme.bodySmall))),
+                        child: Text(MyString.favBlog,
+                            style: textTheme.bodySmall))),
               ),
-              TechDivider(size: size),
+              TechDivider(),
               InkWell(
                 onTap: () {},
                 splashColor: SolidColors.primaryColor,
                 child: SizedBox(
                     height: 40,
                     child: Center(
-                        child:
-                            Text(MyString.favPodcast, style: textTheme.bodySmall))),
+                        child: Text(MyString.favPodcast,
+                            style: textTheme.bodySmall))),
               ),
-              TechDivider(size: size),
+              TechDivider(),
               InkWell(
                 onTap: () {},
                 splashColor: SolidColors.primaryColor,

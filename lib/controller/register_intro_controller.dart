@@ -3,10 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:techblog_app/component/api_const.dart';
+import 'package:techblog_app/component/constant/api_const.dart';
 import 'package:techblog_app/component/my_component.dart';
-import 'package:techblog_app/component/storage_const.dart';
-import 'package:techblog_app/gen/assets.gen.dart';
+import 'package:techblog_app/component/constant/storage_const.dart';
 import 'package:techblog_app/services/dio_service.dart';
 import 'package:techblog_app/view/main_screen/main_screen.dart';
 import 'package:techblog_app/view/register_intro.dart';

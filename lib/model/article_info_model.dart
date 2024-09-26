@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:techblog_app/component/api_const.dart';
+import 'package:techblog_app/component/constant/api_const.dart';
 
 class ArticleInfoModel {
   String? id;
@@ -14,7 +14,10 @@ class ArticleInfoModel {
   String? createdAt;
   bool? isFavorite;
 
-  ArticleInfoModel();
+  ArticleInfoModel(
+    this.title,
+    this.content,
+  );
 
   ArticleInfoModel.fromJson(Map<String, dynamic> element) {
     var info = element['info'];

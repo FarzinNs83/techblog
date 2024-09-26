@@ -18,34 +18,7 @@ class ArticleListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "لیست مقالها",
-              style: appBarTextStyle,
-            ),
-          ),
-        ],
-        leading: Padding(
-          padding: const EdgeInsets.only(right: 12),
-          child: Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.purple[200],
-            ),
-            child: const Icon(
-              Icons.arrow_back,
-              size: 32,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
+      appBar: appBar("لیست مقاله ها"),
       body: SizedBox(
         child: Obx(
           () => ListView.builder(

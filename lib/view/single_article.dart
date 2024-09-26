@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:techblog_app/component/my_colors.dart';
+import 'package:techblog_app/component/constant/my_colors.dart';
 import 'package:techblog_app/component/my_component.dart';
 import 'package:techblog_app/controller/article_screen_controller.dart';
 import 'package:techblog_app/controller/single_article_controller.dart';
@@ -29,10 +29,13 @@ class SingleArticle extends StatelessWidget {
                 Stack(
                   children: [
                     SizedBox(
+                      
                       child: CachedNetworkImage(
+                        
                         imageBuilder: (context, imageProvider) {
                           return Image(image: imageProvider);
                         },
+                        
                         imageUrl: singleArticleController
                                 .singleArticleList.value.image ??
                             '',
@@ -195,7 +198,7 @@ class SingleArticle extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 8, vertical: 8),
                                     child: Text(singleArticleController
-                                        .tagList[index].title!),
+                                        .tagList[index].title!,style: const TextStyle(color: Colors.black54),),
                                   ),
                                 ),
                               ),

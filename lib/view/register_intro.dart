@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:techblog_app/component/my_string.dart';
+import 'package:techblog_app/component/constant/my_string.dart';
 import 'package:techblog_app/controller/register_intro_controller.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
 import 'package:validators/validators.dart';
