@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:techblog_app/component/constant/api_const.dart';
 import 'package:techblog_app/model/article_info_model.dart';
@@ -12,6 +13,7 @@ class ManagerArticleController extends GetxController {
           """من متن و بدنه اصلی مقاله هستم ، اگه میخوای من رو ویرایش کنی و یه مقاله جذاب بنویسی ، نوشته آبی رنگ بالا که نوشته "ویرایش متن اصلی مقاله" رو با انگشتت لمس کن تا وارد ویرایشگر بشی """)
       .obs;
   RxList<TagsModel> tagList = RxList();
+  TextEditingController titleTextEditingController = TextEditingController();
   RxBool isLoading = false.obs;
 
   @override
@@ -30,5 +32,13 @@ class ManagerArticleController extends GetxController {
       });
       articleList.clear();
     }
+  }
+
+  updateTitle() {
+    manageArticle.update(
+      (val) {
+        val!.title = titleTextEditingController.text;
+      },
+    );
   }
 }

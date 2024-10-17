@@ -73,7 +73,7 @@ class _MyCategoriesState extends State<MyCategories> {
                                   .contains(tagList[index])) {
                                 selectedCategories.add(tagList[index]);
                               } else {}
-                              print("${tagList[index]} Exists");
+                              debugPrint("${tagList[index]} Exists");
                             });
                           },
                           child:

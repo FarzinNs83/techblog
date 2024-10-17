@@ -11,8 +11,7 @@ import 'package:techblog_app/view/article_list_screen.dart';
 // ignore: must_be_immutable
 class SingleArticle extends StatelessWidget {
   SingleArticle({super.key});
-  var singleArticleController =
-      Get.find<SingleArticleController>();
+  var singleArticleController = Get.find<SingleArticleController>();
   ArticleScreenController articleScreenController =
       Get.put(ArticleScreenController());
 
@@ -29,16 +28,12 @@ class SingleArticle extends StatelessWidget {
                 Stack(
                   children: [
                     SizedBox(
-                      
                       child: CachedNetworkImage(
-                        
                         imageBuilder: (context, imageProvider) {
                           return Image(image: imageProvider);
                         },
-                        
                         imageUrl: singleArticleController
-                                .singleArticleList.value.image ??
-                            '',
+                                .singleArticleList.value.image!,
                         placeholder: (context, url) {
                           return const MyLoading();
                         },
@@ -139,7 +134,8 @@ class SingleArticle extends StatelessWidget {
                             width: 12,
                           ),
                           Text(
-                            singleArticleController.singleArticleList.value.createdAt!,
+                            singleArticleController
+                                .singleArticleList.value.createdAt!,
                             style: TextStyle(
                               color: Colors.grey.shade500,
                               fontFamily: 'dana',
@@ -197,8 +193,12 @@ class SingleArticle extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 8, vertical: 8),
-                                    child: Text(singleArticleController
-                                        .tagList[index].title!,style: const TextStyle(color: Colors.black54),),
+                                    child: Text(
+                                      singleArticleController
+                                          .tagList[index].title!,
+                                      style: const TextStyle(
+                                          color: Colors.black54),
+                                    ),
                                   ),
                                 ),
                               ),

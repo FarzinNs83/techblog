@@ -6,6 +6,7 @@ import 'package:techblog_app/controller/register_intro_controller.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
 import 'package:validators/validators.dart';
 
+// ignore: must_be_immutable
 class RegisterIntro extends StatelessWidget {
   RegisterIntro({super.key});
   var registerIntroController = Get.find<RegisterIntroController>();
@@ -42,107 +43,110 @@ class RegisterIntro extends StatelessWidget {
       ),
     );
   }
+
   Future<dynamic> _showEmailBottomSheet(
-    BuildContext context, Size size, TextTheme textTheme) {
-  return showModalBottomSheet(
-    isScrollControlled: true,
-    context: context,
-    backgroundColor: Colors.transparent,
-    builder: (context) {
-      return Padding(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: Container(
-          height: size.height / 2.5,
-          decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  MyString.userEmail,
-                  style: textTheme.bodySmall,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: TextFormField(
-                    controller: registerIntroController.emailTextEditingController,
-                    onChanged: (value) {
-                      isEmail(value);
-                      print("$value is Email : ${isEmail(value)}");
-                    },
-                    textAlign: TextAlign.center,
-                    decoration: InputDecoration(
-                        hintText: "techblog@gmail.com",
-                        hintStyle: textTheme.labelSmall),
+      BuildContext context, Size size, TextTheme textTheme) {
+    return showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
+            height: size.height / 2.5,
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30))),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    MyString.userEmail,
+                    style: textTheme.bodySmall,
                   ),
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      registerIntroController.register();
-                      Navigator.pop(context);
-                      _activateCodeBottomSheet(context, size, textTheme);
-                    },
-                    child: const Text("ادامه"))
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: TextFormField(
+                      controller:
+                          registerIntroController.emailTextEditingController,
+                      onChanged: (value) {
+                        isEmail(value);
+                        debugPrint("$value is Email : ${isEmail(value)}");
+                      },
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                          hintText: "techblog@gmail.com",
+                          hintStyle: textTheme.labelSmall),
+                    ),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        registerIntroController.register();
+                        Navigator.pop(context);
+                        _activateCodeBottomSheet(context, size, textTheme);
+                      },
+                      child: const Text("ادامه"))
+                ],
+              ),
             ),
           ),
-        ),
-      );
-    },
-  );
-}
+        );
+      },
+    );
+  }
 
-Future<dynamic> _activateCodeBottomSheet(
-    BuildContext context, Size size, TextTheme textTheme) {
-  return showModalBottomSheet(
-    isScrollControlled: true,
-    context: context,
-    backgroundColor: Colors.transparent,
-    builder: (context) {
-      return Padding(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: Container(
-          height: size.height / 2.5,
-          decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  MyString.activateCode,
-                  style: textTheme.bodySmall,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: TextFormField(
-                    controller: registerIntroController.activationCodeTextEditingController,
-                    textAlign: TextAlign.center,
-                    decoration: InputDecoration(
-                        hintText: "******", hintStyle: textTheme.labelSmall),
+  Future<dynamic> _activateCodeBottomSheet(
+      BuildContext context, Size size, TextTheme textTheme) {
+    return showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
+            height: size.height / 2.5,
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30))),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    MyString.activateCode,
+                    style: textTheme.bodySmall,
                   ),
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      registerIntroController.verify();
-                      
-                    },
-                    child: const Text("ادامه"))
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: registerIntroController
+                          .activationCodeTextEditingController,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                          hintText: "******", hintStyle: textTheme.labelSmall),
+                    ),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        registerIntroController.verify();
+                      },
+                      child: const Text("ادامه"))
+                ],
+              ),
             ),
           ),
-        ),
-      );
-    },
-  );
+        );
+      },
+    );
+  }
 }
-
-}
-

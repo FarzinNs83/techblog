@@ -38,7 +38,7 @@ class ProfileScreen extends StatelessWidget {
               Text("فاطمه امیری", style: textTheme.bodySmall),
               Text("fatemeamiri@gmail.com", style: textTheme.bodySmall),
               const SizedBox(height: 40),
-              TechDivider(),
+              const TechDivider(),
               InkWell(
                 onTap: () {},
                 splashColor: SolidColors.primaryColor,
@@ -48,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
                         child: Text(MyString.favBlog,
                             style: textTheme.bodySmall))),
               ),
-              TechDivider(),
+              const TechDivider(),
               InkWell(
                 onTap: () {},
                 splashColor: SolidColors.primaryColor,
@@ -58,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
                         child: Text(MyString.favPodcast,
                             style: textTheme.bodySmall))),
               ),
-              TechDivider(),
+              const TechDivider(),
               InkWell(
                 onTap: () {},
                 splashColor: SolidColors.primaryColor,

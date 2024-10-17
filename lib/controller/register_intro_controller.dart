@@ -15,7 +15,7 @@ class RegisterIntroController extends GetxController {
   TextEditingController activationCodeTextEditingController =
       TextEditingController();
   var email = '';
-  var user_id = '';
+  var userId = '';
   register() async {
     Map<String, dynamic> map = {
       'email': emailTextEditingController.text,
@@ -25,14 +25,14 @@ class RegisterIntroController extends GetxController {
     var response = await DioService().postMethod(map, ApiConst.postRegister);
 
     email = emailTextEditingController.text;
-    user_id = response.data['user_id'];
+    userId = response.data['user_id'];
     debugPrint(response.toString());
   }
 
   verify() async {
     Map<String, dynamic> map = {
       'email': email,
-      'user_id': user_id,
+      'user_id': userId,
       'code': activationCodeTextEditingController.text,
       'command': 'verify',
     };
@@ -42,11 +42,11 @@ class RegisterIntroController extends GetxController {
     switch (status) {
       case 'verified':
         var box = GetStorage();
-        box.write(token, response.data['token']);
-        box.write(user_id, response.data['user_id']);
+        box.write(StoreKey.token, response.data['token']);
+        box.write(StoreKey.userId, response.data['user_id']);
 
-        debugPrint("Read::: " + box.read(token));
-        debugPrint("Read::: " + box.read(user_id));
+        debugPrint("Read::: " + box.read(StoreKey.token));
+        debugPrint("Read::: " + box.read(StoreKey.userId));
 
         Get.to(MainScreen());
         break;
@@ -60,7 +60,7 @@ class RegisterIntroController extends GetxController {
   }
 
   toggleLogin() {
-    if (GetStorage().read(token) == null) {
+    if (GetStorage().read(StoreKey.token) == null) {
       Get.to(RegisterIntro());
     } else {
       routeToWriteBottomSheet();

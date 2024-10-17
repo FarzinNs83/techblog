@@ -1,16 +1,42 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:techblog_app/component/constant/my_colors.dart';
-import 'package:techblog_app/component/dimension.dart';
 import 'package:techblog_app/component/my_component.dart';
+import 'package:techblog_app/controller/file_controller.dart';
+import 'package:techblog_app/controller/home_screen_controller.dart';
 import 'package:techblog_app/controller/manager_article_controller.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
+import 'package:techblog_app/services/pick_file.dart';
 
 // ignore: must_be_immutable
 class SingleManageArticle extends StatelessWidget {
   SingleManageArticle({super.key});
   var managerArticleController = Get.find<ManagerArticleController>();
+  FileController fileController = Get.put(FileController());
+  var homeScreenController = Get.put(HomeScreenController());
+
+  titleEdit() {
+    Get.defaultDialog(
+        title: "یک عنوان باحال انتخاب کن",
+        titleStyle: const TextStyle(color: SolidColors.scaffoldBackground),
+        content: TextField(
+          controller: managerArticleController.titleTextEditingController,
+          keyboardType: TextInputType.text,
+          style: const TextStyle(color: SolidColors.colorTitle),
+          decoration: const InputDecoration(hintText: "اینجا وارد کن"),
+        ),
+        backgroundColor: SolidColors.primaryColor,
+        radius: 8,
+        confirm: ElevatedButton(
+            onPressed: () {
+              managerArticleController.updateTitle();
+              Get.back();
+            },
+            child: const Text('ثبت')));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,21 +50,28 @@ class SingleManageArticle extends StatelessWidget {
                 Stack(
                   children: [
                     SizedBox(
-                      child: CachedNetworkImage(
-                        imageBuilder: (context, imageProvider) {
-                          return Image(image: imageProvider);
-                        },
-                        imageUrl: managerArticleController
-                                .manageArticle.value.image ??
-                            '',
-                        placeholder: (context, url) {
-                          return const MyLoading();
-                        },
-                        errorWidget: (context, url, error) {
-                          return Image.asset(
-                              Assets.images.singlePlaceHolder.path);
-                        },
-                      ),
+                      width: Get.width,
+                      height: Get.height / 3,
+                      child: fileController.file.value.name == "nothing"
+                          ? CachedNetworkImage(
+                              imageBuilder: (context, imageProvider) {
+                                return Image(image: imageProvider);
+                              },
+                              imageUrl: managerArticleController
+                                      .manageArticle.value.image ??
+                                  '',
+                              placeholder: (context, url) {
+                                return const MyLoading();
+                              },
+                              errorWidget: (context, url, error) {
+                                return Image.asset(
+                                    Assets.images.singlePlaceHolder.path);
+                              },
+                            )
+                          : Image.file(
+                              File(fileController.file.value.path!),
+                              fit: BoxFit.cover,
+                            ),
                     ),
                     Positioned(
                       right: 0,
@@ -71,13 +104,59 @@ class SingleManageArticle extends StatelessWidget {
                           ],
                         ),
                       ),
-                    )
+                    ),
+                    Positioned(
+                        right: 0,
+                        left: 0,
+                        bottom: 0,
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              // File Picker
+                              pickFile();
+                            },
+                            child: Container(
+                              height: 40,
+                              width: Get.width / 3,
+                              decoration: const BoxDecoration(
+                                color: SolidColors.primaryColor,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(12),
+                                  topRight: Radius.circular(12),
+                                ),
+                              ),
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "انتخاب تصویر",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        fontFamily: 'dana'),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ))
                   ],
                 ),
                 const SizedBox(
                   height: 32,
                 ),
-                seeMore("ویرایش عنوان مقاله"),
+                GestureDetector(
+                    onTap: () {
+                      titleEdit();
+                    },
+                    child: seeMore("ویرایش عنوان مقاله")),
                 const SizedBox(
                   height: 8,
                 ),
@@ -124,40 +203,13 @@ class SingleManageArticle extends StatelessWidget {
                 const SizedBox(
                   height: 32,
                 ),
-                seeMore("انتخاب دسته بندی "),
+                GestureDetector(
+                    onTap: () {
+                      chooseTagsBottomSheet();
+                    },
+                    child: seeMore("انتخاب دسته بندی ")),
                 const SizedBox(
                   height: 24,
-                ),
-                SizedBox(
-                  height: 60,
-                  child: ListView.builder(
-                    itemCount: 4,
-                    //  managerArticleController.tagList.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {},
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(
-                              16, 8, index == 0 ? Dimension.bodyMargin : 8, 8),
-                          child: Container(
-                            height: 60,
-                            decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 242, 242, 242),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(16),
-                              ),
-                            ),
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 8),
-                              child: Text("Tags"),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
                 ),
               ],
             ),
@@ -183,6 +235,58 @@ class SingleManageArticle extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  chooseTagsBottomSheet() {
+    Get.bottomSheet(
+      Container(
+        height: Get.height / 1.6,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(16),
+            topRight: Radius.circular(16),
+            
+          ),
+          
+        ),
+        child: SizedBox(
+          height: 60,
+          child: GridView.builder(
+            itemCount: homeScreenController.tagsList.length,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+                  child: Container(
+                    height: 60,
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 242, 242, 242),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(16),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: Center(
+                          child: Text(
+                              homeScreenController.tagsList[index].title!)),
+                    ),
+                  ),
+                ),
+              );
+            },
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3, crossAxisSpacing: 5, mainAxisSpacing: 4),
+          ),
+        ),
+      ),
+      isScrollControlled: true,
+      persistent: true,
     );
   }
 }

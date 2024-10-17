@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:techblog_app/component/constant/my_colors.dart';
-import 'package:techblog_app/component/constant/my_string.dart';
 import 'package:techblog_app/component/dimension.dart';
 import 'package:techblog_app/component/text_style.dart';
 import 'package:techblog_app/controller/home_screen_controller.dart';
 import 'package:techblog_app/gen/assets.gen.dart';
 import 'package:techblog_app/main.dart';
-import 'package:techblog_app/view/article_list_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TechDivider extends StatelessWidget {
@@ -65,7 +63,7 @@ mylaunchUrl(String url) async {
   if (await canLaunchUrl(uri)) {
     await launchUrl(uri);
   } else {
-    print("Could not launch");
+    debugPrint("Could not launch");
   }
 }
 
@@ -226,18 +224,15 @@ routeToWriteBottomSheet() {
 Widget seeMore(String text) {
   return Padding(
     padding: EdgeInsets.only(right: Dimension.halfBodyMargin, bottom: 8),
-    child: GestureDetector(
-      onTap: () => Get.to(ArticleListScreen()),
-      child: Row(
-        children: [
-          ImageIcon(
-            Assets.images.pen.provider(),
-            color: SolidColors.seeMore,
-          ),
-          const SizedBox(width: 8),
-          Text(text),
-        ],
-      ),
+    child: Row(
+      children: [
+        ImageIcon(
+          Assets.images.pen.provider(),
+          color: SolidColors.seeMore,
+        ),
+        const SizedBox(width: 8),
+        Text(text),
+      ],
     ),
   );
 }

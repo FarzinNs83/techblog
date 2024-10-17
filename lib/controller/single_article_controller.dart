@@ -8,7 +8,7 @@ import 'package:techblog_app/view/single_article.dart';
 
 class SingleArticleController extends GetxController {
   RxInt id = RxInt(0);
-  Rx<ArticleInfoModel> singleArticleList = ArticleInfoModel(null,null).obs;
+  Rx<ArticleInfoModel> singleArticleList = ArticleInfoModel(null, null).obs;
   RxList<TagsModel> tagList = RxList();
   RxList<ArticleModel> relatedList = RxList();
   RxBool isLoading = false.obs;
@@ -22,19 +22,20 @@ class SingleArticleController extends GetxController {
 
     if (response.statusCode == 200) {
       singleArticleList.value = ArticleInfoModel.fromJson(response.data);
-          isLoading.value = false;
+      isLoading.value = false;
     }
 
+    print("okay${response.data['image']}");
+
     tagList.clear();
-    response.data['tags'].forEach((element){
+    response.data['tags'].forEach((element) {
       tagList.add(TagsModel.fromJson(element));
-    });    
+    });
     relatedList.clear();
-    response.data['related'].forEach((element){
+    response.data['related'].forEach((element) {
       relatedList.add(ArticleModel.fromJson(element));
     });
 
     Get.to(SingleArticle());
   }
-
 }
